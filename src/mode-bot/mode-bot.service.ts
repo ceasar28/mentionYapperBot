@@ -105,7 +105,7 @@ export class ModeBotService {
 
         const yapperReply = await this.yapper(data);
 
-        await this.bot.sendMessage(chatId, `${yapperReply.reply}`);
+        return await this.bot.sendMessage(chatId, `${yapperReply.reply}`);
       }
       // Log the sender's information
       // this.logger.debug(
@@ -125,7 +125,7 @@ export class ModeBotService {
 
       const yapperReply = await this.yapper(data);
 
-      await this.bot.sendMessage(chatId, `${yapperReply.reply}`);
+      return await this.bot.sendMessage(chatId, `${yapperReply.reply}`);
     } catch (error) {
       console.log(error);
     }
