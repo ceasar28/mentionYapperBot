@@ -34,7 +34,11 @@ export class ModeBotService {
         return;
       }
 
+      // supergroup;
+
       const command = msg.text.trim();
+      const regex = /@CryptoFede.*(dm|DM|Dm|dM)/i;
+      const regex2 = /(dm|DM|Dm|dM).*@CryptoFede/i;
 
       if (command.startsWith('/start')) {
         const username = `${msg.from.username}`;
@@ -70,8 +74,8 @@ export class ModeBotService {
           );
         }
       } else if (
-        command.includes('@CryptoFede') &&
-        msg.chat.type === 'supergroup'
+        regex.test(command) ||
+        (regex2.test(command) && msg.chat.type === 'group')
       ) {
         await this.handleGroupTag(msg);
       }
