@@ -75,7 +75,7 @@ export class ModeBotService {
         }
       } else if (
         regex.test(command) ||
-        (regex2.test(command) && msg.chat.type === 'group')
+        (regex2.test(command) && msg.chat.type === 'supergroup')
       ) {
         await this.handleGroupTag(msg);
       }
