@@ -69,10 +69,7 @@ export class ModeBotService {
             'There was an error saving your data, Please click the button below to try again.\n\nclick on /start or retry with the refferal link',
           );
         }
-      } else if (
-        command.includes('@allbotTestsbot') &&
-        msg.chat.type === 'group'
-      ) {
+      } else if (command.includes('@CryptoFede') && msg.chat.type === 'group') {
         await this.handleGroupTag(msg);
       }
     } catch (error) {
@@ -112,7 +109,7 @@ export class ModeBotService {
       }
       // Log the sender's information
       // this.logger.debug(
-      //   `@allbotTestsbot tagged by ${username} in group ${chatId}`,
+      //   `@CryptoFede tagged by ${username} in group ${chatId}`,
       // );
 
       const editUserCount = await this.UserModel.findOneAndUpdate(
@@ -139,14 +136,14 @@ export class ModeBotService {
     const mentionsByUser = data.count;
     const totalMentions = await this.sumAllCounts();
 
-    const prompt = `In this Telegram group chat, @${username} mentioned @allbotTestsbot. They've mentioned @allbotTestsbot **${mentionsByUser} times**. The total mentions of @allbotTestsbot from everyone in the group is **${totalMentions}**. Provide a witty, fun, sarcastic, and playful reply detailing these statistics. Show the numbers, not percentages, and keep it lighthearted, with a hint of mockery about how often @${username} mentions @allbotTestsbot . Respond as if you're a Telegram bot joining the conversation with some cheeky humor!`;
+    const prompt = `In this Telegram group chat, @${username} mentioned @CryptoFede. They've mentioned @CryptoFede **${mentionsByUser} times**. The total mentions of @CryptoFede from everyone in the group is **${totalMentions}**. Provide a witty, fun, sarcastic, and playful reply detailing these statistics. Show the numbers, not percentages, and keep it lighthearted, with a hint of mockery about how often @${username} mentions @CryptoFede . Respond as if you're a Telegram bot joining the conversation with some cheeky humor!`;
 
     try {
       const response = await this.openai.chat.completions.create({
         messages: [
           {
             role: 'system',
-            content: `Act as a witty AI agent. Reply with a fun and sarcastic comment detailing the mention statistics using numbers. Show the frequency @${username} mentioned @allbotTestsbot and the total number of time everyother person mentioned @allbotTestsbot , in a playful tone. Keep the response light and humorous, without percentages, using only raw numbers.let the reply be maximum of 100 characters`,
+            content: `Act as a witty AI agent. Reply with a fun and sarcastic comment detailing the mention statistics using numbers. Show the frequency @${username} mentioned @CryptoFede and the total number of time everyother person mentioned @CryptoFede , in a playful tone. Keep the response light and humorous, without percentages, using only raw numbers.let the reply be maximum of 100 characters`,
           },
           { role: 'user', content: prompt },
         ],
