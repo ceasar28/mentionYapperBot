@@ -74,8 +74,8 @@ export class ModeBotService {
           );
         }
       } else if (
-        regex.test(command) ||
-        (regex2.test(command) && msg.chat.type === 'supergroup')
+        (regex.test(command) || regex2.test(command)) &&
+        (msg.chat.type === 'supergroup' || msg.chat.type === 'group')
       ) {
         await this.handleGroupTag(msg);
       }
