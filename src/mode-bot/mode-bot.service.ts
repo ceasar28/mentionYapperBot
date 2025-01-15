@@ -69,7 +69,7 @@ export class ModeBotService {
             'There was an error saving your data, Please click the button below to try again.\n\nclick on /start or retry with the refferal link',
           );
         }
-      } else if (command.includes('@CryptoFede') && msg.chat.type === 'group') {
+      } else if (command.includes('@CryptoFede') && msg.chat.type === 'type') {
         await this.handleGroupTag(msg);
       }
     } catch (error) {
