@@ -28,8 +28,6 @@ export class ModeBotService {
   handleRecievedMessages = async (msg: any) => {
     this.logger.debug(msg);
     try {
-      await this.bot.sendChatAction(msg.chat.id, 'typing');
-
       if (!msg.text) {
         return;
       }
@@ -46,6 +44,7 @@ export class ModeBotService {
           chatId: msg.chat.id,
         });
         if (userExist) {
+          await this.bot.sendChatAction(msg.chat.id, 'typing');
           const welcome = await welcomeMessageMarkup(username);
           const replyMarkup = {
             inline_keyboard: welcome.keyboard,
@@ -61,6 +60,7 @@ export class ModeBotService {
         const welcome = await welcomeMessageMarkup(username);
 
         if (welcome && saved) {
+          await this.bot.sendChatAction(msg.chat.id, 'typing');
           const replyMarkup = {
             inline_keyboard: welcome.keyboard,
           };
@@ -77,6 +77,7 @@ export class ModeBotService {
         (regex.test(command) || regex2.test(command)) &&
         (msg.chat.type === 'supergroup' || msg.chat.type === 'group')
       ) {
+        await this.bot.sendChatAction(msg.chat.id, 'typing');
         await this.handleGroupTag(msg);
       }
     } catch (error) {
